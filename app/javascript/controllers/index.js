@@ -4,23 +4,26 @@
 
 import { application } from "./application"
 
+import ClipboardController from "./clipboard_controller"
+application.register("clipboard", ClipboardController)
+
+import ComboSelectController from "./combo_select_controller"
+application.register("combo-select", ComboSelectController)
+
+import DropdownController from "./dropdown_controller"
+application.register("dropdown", DropdownController)
+
 import HelloController from "./hello_controller"
 application.register("hello", HelloController)
 
-import ComboSelectController from "./combo_select_controller.js";
-application.register("combo-select", ComboSelectController);
+import ModalController from "./modal_controller"
+application.register("modal", ModalController)
 
-import DropdownController from "./dropdown_controller.js";
-application.register("dropdown", DropdownController);
+import NavController from "./nav_controller"
+application.register("nav", NavController)
 
-import ModalController from "./modal_controller.js";
-application.register("modal", ModalController);
+import TabsController from "./tabs_controller"
+application.register("tabs", TabsController)
 
-import TabController from "./tabs_controller.js";
-application.register("tabs", TabController);
-
-import NavController from "./nav_controller.js";
-application.register("nav", NavController);
-
-import TooltipController from "./tooltip_controller.js";
-application.register("tooltip", TooltipController);
+import TooltipController from "./tooltip_controller"
+application.register("tooltip", TooltipController)

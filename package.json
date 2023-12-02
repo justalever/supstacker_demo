@@ -2,7 +2,7 @@
   "name": "app",
   "private": "true",
   "scripts": {
-		"build:css": "tailwindcss --postcss -i ./app/assets/stylesheets/application.tailwind.css -o ./app/assets/builds/application.css --minify",
+    "build:css": "tailwindcss --postcss -i ./app/assets/stylesheets/application.tailwind.css -o ./app/assets/builds/application.css --minify",
     "build": "esbuild app/javascript/*.* --bundle --sourcemap --outdir=app/assets/builds --public-path=assets"
   },
   "dependencies": {
@@ -12,6 +12,7 @@
     "@tailwindcss/forms": "^0.5.7",
     "@tailwindcss/typography": "^0.5.10",
     "autoprefixer": "^10.4.16",
+    "clipboard": "^2.0.11",
     "esbuild": "^0.19.8",
     "postcss": "^8.4.32",
     "postcss-import": "^15.1.0",

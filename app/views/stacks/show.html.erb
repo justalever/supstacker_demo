@@ -20,7 +20,9 @@
 
     <div class="flex items-center justify-between gap-4 py-3 px-2 border-y">
       <div class="flex flex-1 items-center gap-4">
-        <!-- link to stack -->
+        <button class="btn btn-white rounded-full flex items-center justify-center w-10 h-10 m-0" data-controller="clipboard" data-clipboard-text="<%= stack_url(@stack.share_link) %>">
+          <%= icon "link", classes: "w-5 h-5 flex-shrink-0" %>
+        </button>
 
         <time class="text-slate-600 text-xs" datetime="<%= @stack.created_at.to_fs(:long) %>">Created <%= time_ago_in_words(@stack.created_at) + ' ago' %></time>
       </div>

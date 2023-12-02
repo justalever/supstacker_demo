@@ -38,7 +38,7 @@ class ProductsController < ApplicationController
 
   private
     def set_stack
-      @stack = Stack.find(params[:stack_id])
+      @stack = Stack.find_by(share_link: params[:share_link]) || Stack.find_by(id: params[:share_link])
     end
 
     def set_product
