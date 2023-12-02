@@ -1,0 +1,20 @@
+<%= form_with(model: stack) do |form| %>
+  <%= render "shared/error_messages", resource: form.object %>
+
+  <div class="form-group">
+    <%= form.label :title, class: "form-label" %>
+    <%= form.text_field :title, class: "form-input" %>
+  </div>
+
+  <div class="flex items-center justify-between flex-wrap">
+    <div class="sm:flex-1 sm:mb-0 mb-6">
+      <%= form.submit class: "btn btn-primary" %>
+    </div>
+
+    <% if form.object.new_record? %>
+      <%= link_to "Cancel", stacks_path, class: "btn btn-light" %>
+    <% else %>
+      <%= link_to "Cancel", stack_path(@stack), class: "btn btn-light" %>
+    <% end %>
+  </div>
+<% end %>

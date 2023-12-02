@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2023_12_02_190349) do
+ActiveRecord::Schema[7.1].define(version: 2023_12_02_191733) do
   create_table "action_text_rich_texts", force: :cascade do |t|
     t.string "name", null: false
     t.text "body"
@@ -49,6 +49,43 @@ ActiveRecord::Schema[7.1].define(version: 2023_12_02_190349) do
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
   end
 
+  create_table "brands", force: :cascade do |t|
+    t.string "name"
+    t.text "description"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "product_stacks", force: :cascade do |t|
+    t.integer "product_id", null: false
+    t.integer "stack_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["product_id"], name: "index_product_stacks_on_product_id"
+    t.index ["stack_id"], name: "index_product_stacks_on_stack_id"
+  end
+
+  create_table "products", force: :cascade do |t|
+    t.string "title"
+    t.text "description"
+    t.string "link"
+    t.string "asin"
+    t.decimal "price", precision: 10, scale: 2
+    t.integer "brand_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["brand_id"], name: "index_products_on_brand_id"
+  end
+
+  create_table "stacks", force: :cascade do |t|
+    t.string "title"
+    t.string "share_link"
+    t.integer "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_stacks_on_user_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -66,4 +103,8 @@ ActiveRecord::Schema[7.1].define(version: 2023_12_02_190349) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "product_stacks", "products"
+  add_foreign_key "product_stacks", "stacks"
+  add_foreign_key "products", "brands"
+  add_foreign_key "stacks", "users"
 end
