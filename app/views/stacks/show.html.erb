@@ -39,6 +39,6 @@
   </div>
 
   <% @stack.products.each do |product| %>
-    <%= render "products/product", product: product %>
+    <%= render "products/product_slim", stack: @stack, product: product %>
   <% end %>
 </div>

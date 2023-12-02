@@ -1,39 +1,40 @@
-<article id="<%= dom_id product %>" class="py-6 prose dark:prose-invert">
-    <p class="mb-0 font-semibold">
-      Title
-    </p>
-    <p class="my-0">
-      <%= product.title %>
-    </p>
+<article id="<%= dom_id product %>">
+  <div class="flex items-start justify-between py-6">
+    <% if product.thumbnail.attached? %>
+      <%= image_tag product.thumbnail %>
+    <% end %>
+
+    <div class="flex flex-col items-end">
+      <p class="text-3xl font-bold pb-3">
+        <%= number_to_currency(product.price) %></p>
+
+      <%= link_to "Buy on Amazon", product.link, target: :_blank, class: "btn btn-dark" %>
+
+    </div>
+  </div>
+
+  <div class="prose prose-indigo pt-4">
     <p class="mb-0 font-semibold">
       Description
     </p>
-    <p class="my-0">
-      <%= product.description %>
-    </p>
-    <p class="mb-0 font-semibold">
-      Link
-    </p>
-    <p class="my-0">
-      <%= product.link %>
-    </p>
-    <p class="mb-0 font-semibold">
-      Asin
-    </p>
-    <p class="my-0">
-      <%= product.asin %>
-    </p>
-    <p class="mb-0 font-semibold">
-      Price
-    </p>
-    <p class="my-0">
-      <%= product.price %>
-    </p>
+
+    <%= simple_format product.description %>
+
     <p class="mb-0 font-semibold">
       Brand
     </p>
     <p class="my-0">
-      <%= product.brand_id %>
+      <%= product.brand.name %>
     </p>
-  <time class="text-slate-600 dark:text-slate-400 text-xs mt-2" datetime="<%= product.created_at.to_formatted_s(:long) %>">Created <%= time_ago_in_words(product.created_at) + " ago" %></time>
+
+    <p class="mb-0 font-semibold">
+      ASIN
+    </p>
+    <p class="my-0">
+      <%= product.asin %>
+    </p>
+
+    <time class="text-slate-600 dark:text-slate-400 text-xs mt-2" datetime="<%= product.created_at.to_formatted_s(:long) %>">Created <%= time_ago_in_words(product.created_at) + " ago" %></time>
+  </div>
+
 </article>

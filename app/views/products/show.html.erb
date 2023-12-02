@@ -3,22 +3,24 @@
     <nav aria-label="breadcrumb" class="my-6 font-medium flex text-slate-500 dark:text-slate-200 text-sm">
       <ol class="flex flex-wrap items-center space-x-3">
         <li>
-          <%= link_to "Products", stack_products_path(@stack), class: "hover:underline hover:text-slate-600 dark:hover:text-slate-400" %>
+          <%= link_to @stack.title, stack_path(@stack), class: "hover:underline hover:text-slate-600 dark:hover:text-slate-400" %>
         </li>
         <li class="flex space-x-3">
           <div class="flex items-center">
             <span class="text-slate-300 dark:text-slate-500">/</span>
           </div>
           <span class="text-indigo-600 dark:text-indigo-500" aria-current="page">
-            #<%= @product.id %>
+            <%= truncate(@product.title, length: 60) %>
           </span>
         </li>
       </ol>
     </nav>
-    <div class="flex items-center justify-between">
-      <h1 class="h3 flex-1">product #<%= @product.id %></h1>
+    <div class="flex items-center justify-between gap-4">
+      <h1 class="h3 flex-1"><%= @product.title.html_safe %></h1>
 
-      <%= link_to "Edit", edit_stack_product_path(@stack, @product), class: "btn btn-light" %>
+      <% if current_user_stack?(@stack) %>
+        <%= link_to "Edit", edit_stack_product_path(@stack, @product), class: "btn btn-light" %>
+      <% end %>
     </div>
   </div>
   <%= render @product %>

@@ -1,0 +1,19 @@
+<li class="py-3 flex items-center gap-4">
+  <% if product.thumbnail.attached? %>
+    <%= link_to stack_product_path(stack, product), class: "block" do %>
+      <%= image_tag url_for(product.thumbnail), class: "w-12 h-12 p-1 object-contain border rounded", alt: product.title %>
+    <% end %>
+  <% end %>
+
+  <div class="flex items-start justify-between gap-4 flex-1">
+    <div class="flex-1">
+      <%= link_to stack_product_path(stack, product), target: :_top, class: "group" do %>
+        <h4 class="font-normal text-sm grouphover:text-indigo-600"><%= truncate(product.title, length: 75).html_safe %></h4>
+        <p class="text-medium text-sm"><%= number_to_currency(product.price) %></p>
+      <% end %>
+    </div>
+    <div class="flex justify-end">
+      <%= link_to "Buy on Amazon", product.link, target: :_top, class: "btn btn-dark btn-sm" %>
+    </div>
+  </div>
+</li>

@@ -8,6 +8,7 @@ Bundler.require(*Rails.groups)
 
 module SupstackerDemo
   class Application < Rails::Application
+    config.active_job.queue_adapter = :sidekiq
     config.generators do |g|
       g.template_engine :railsui
       g.fallbacks[:railsui] = :erb

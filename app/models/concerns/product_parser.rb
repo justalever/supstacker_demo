@@ -72,5 +72,15 @@ module ProductParser
 
       return attributes
     end
+
+    def self.save_to_product(url, product)
+      begin
+        attributes = get_attributes(url)
+        product.update(attributes)
+      rescue StandardError => e
+        Rails.logger.error("Error in save_to_product: #{e.message}")
+        Rails.logger.error(e.backtrace.join("\n"))
+      end
+    end
   end
 end

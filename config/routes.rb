@@ -2,8 +2,12 @@ Rails.application.routes.draw do
   resources :stacks do
     resources :products
   end
-
   resources :brands
+
+  if defined?(Sidekiq)
+    require "sidekiq/web"
+    mount Sidekiq::Web => "/sidekiq"
+  end
 
   if Rails.env.development? || Rails.env.test?
     mount Railsui::Engine, at: "/railsui"
