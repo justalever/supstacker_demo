@@ -38,7 +38,13 @@
     <%= render "products/form", product: Product.new %>
   </div>
 
-  <% @stack.products.each do |product| %>
-    <%= render "products/product_slim", stack: @stack, product: product %>
+  <%= turbo_frame_tag "products_count_#{@stack.id}" do %>
+    <%= render "stack_product_count", stack: @stack %>
+  <% end %>
+
+  <%= turbo_stream_from @stack %>
+
+  <%= turbo_frame_tag "product_list_#{@stack.id}" do %>
+    <%= render "product_list", stack: @stack %>
   <% end %>
 </div>
