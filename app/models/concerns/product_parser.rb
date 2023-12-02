@@ -28,7 +28,12 @@ module ProductParser
       if description_element
         dirty_description = description_element.inner_html
         clean_description = sanitize(dirty_description, tags: %w[h3 span p])
-        attributes[:description] = clean_description
+
+        if clean_description.blank?
+          attributes[:description] = "N/A"
+        else
+          attributes[:description] = clean_description
+        end
       end
 
       # price
