@@ -1,5 +1,5 @@
 <div class="max-w-3xl mx-auto px-4 my-16">
-  <div class="pb-6 border-b">
+  <div class="pb-6">
     <nav aria-label="breadcrumb" class="my-6 font-medium flex text-slate-500 dark:text-slate-200 text-sm">
       <ol class="flex flex-wrap items-center space-x-3">
         <li>
@@ -10,15 +10,35 @@
             <span class="text-slate-300 dark:text-slate-500">/</span>
           </div>
           <span class="text-indigo-600 dark:text-indigo-500" aria-current="page">
-            #<%= @stack.id %>
+            <%= @stack.title %>
           </span>
         </li>
       </ol>
     </nav>
-    <div class="flex items-center justify-between">
-      <h1 class="h3 flex-1">stack #<%= @stack.id %></h1>
-      <%= link_to "Edit", edit_stack_path(@stack), class: "btn btn-light" %>
+
+    <h1 class="h3 mb-6"><%= @stack.title %></h1>
+
+    <div class="flex items-center justify-between gap-4 py-3 px-2 border-y">
+      <div class="flex flex-1 items-center gap-4">
+        <!-- link to stack -->
+
+        <time class="text-slate-600 text-xs" datetime="<%= @stack.created_at.to_fs(:long) %>">Created <%= time_ago_in_words(@stack.created_at) + ' ago' %></time>
+      </div>
+
+      <% if current_user_stack?(@stack) %>
+        <%= link_to "Edit", edit_stack_path(@stack), class: "btn btn-light" %>
+      <% else %>
+        <%= link_to "Add product", new_stack_product_path(@stack), class:" btn btn-primary" %>
+      <% end %>
     </div>
   </div>
-  <%= render @stack %>
+
+  <div class="p-6 border bg-indigo-50/20 border-indigo-600/50 rounded-2xl shadow-sm mb-6">
+    <h3 class="font-semibold text-xl tracking-tight mb-3">Add a product</h3>
+    <%= render "products/form", product: Product.new %>
+  </div>
+
+  <% @stack.products.each do |product| %>
+    <%= render "products/product", product: product %>
+  <% end %>
 </div>

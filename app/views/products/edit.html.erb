@@ -3,7 +3,7 @@
     <nav aria-label="breadcrumb" class="my-6 font-medium flex text-slate-500 dark:text-slate-200 text-sm">
       <ol class="flex flex-wrap items-center space-x-3">
         <li>
-          <%= link_to "Products", products_path, class: "hover:underline hover:text-slate-600 dark:hover:text-slate-400" %>
+          <%= link_to "Products", stack_products_path(@stack), class: "hover:underline hover:text-slate-600 dark:hover:text-slate-400" %>
         </li>
         <li class="flex space-x-3">
           <div class="flex items-center">
@@ -15,11 +15,11 @@
     </nav>
     <div class="flex items-center justify-between">
       <h1 class="h3">Edit Product</h1>
-      <%= button_to "Delete", @product, method: :delete, class: "btn btn-light", form: { data: { turbo_confirm: "Are you sure?" } } %>
+      <%= button_to "Delete", stack_product_path(@stack, @product), method: :delete, class: "btn btn-light", form: { data: { turbo_confirm: "Are you sure?" } } %>
     </div>
   </div>
 
   <div>
-    <%= render "form", product: @product %>
+    <%= render "edit_form", product: @product %>
   </div>
 </div>

@@ -1,0 +1,43 @@
+<%= form_with(model: [@stack, product]) do |form| %>
+  <%= render "shared/error_messages", resource: form.object %>
+
+  <div class="form-group">
+    <%= form.label :thumbnail, class:"form-label" do %>
+      <span class="sr-only">Choose a thumbnail</span>
+      <%= form.file_field :thumbnail, class: "form-file" %>
+    <% end %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :title, class: "form-label" %>
+    <%= form.text_field :title, class: "form-input" %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :description, class: "form-label" %>
+    <%= form.text_area :description, class: "form-input" %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :link, class: "form-label" %>
+    <%= form.text_field :link, class: "form-input" %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :asin, class: "form-label" %>
+    <%= form.text_field :asin, class: "form-input" %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :price, class: "form-label" %>
+    <%= form.text_field :price, class: "form-input" %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :brand_id, class: "form-label" %>
+    <%= form.text_field :brand_id, class: "form-input" %>
+  </div>
+
+  <%= form.submit class: "btn btn-primary" %>
+
+<% end %>

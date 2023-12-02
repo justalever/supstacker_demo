@@ -2,7 +2,7 @@
   <div class="flex items-center justify-between pb-6 border-b dark:border-slate-700">
     <h1 class="text-3xl font-bold">Products</h1>
     <div class="flex items-center justify-end">
-      <%= link_to "New Product", new_product_path, class: "btn btn-primary" %>
+      <%= link_to "New Product", new_stack_product_path(@stack), class: "btn btn-primary" %>
     </div>
   </div>
 
@@ -11,7 +11,7 @@
       <div class="py-3">
         <%= render product %>
 
-        <%= link_to "View product", product, class: "btn-link inline-block my-3" %>
+        <%= link_to "View product", stack_product_path(@stack, product), class: "btn-link inline-block my-3" %>
       </div>
     <% end %>
   </div>
